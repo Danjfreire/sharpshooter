@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private int damageAmount = 1;
+
     StarterAssets.StarterAssetsInputs inputs;
 
     private void Start()
@@ -12,24 +14,29 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (inputs.shoot)
+        ShootWeapon();
+    }
+
+    private void ShootWeapon()
+    {
+        if (!inputs.shoot) return;
+
+        RaycastHit hit;
+
+        bool hasCollided = Physics.Raycast(
+            Camera.main.transform.position,
+            Camera.main.transform.forward,
+            out hit,
+            Mathf.Infinity
+        );
+
+        if (hasCollided)
         {
-            RaycastHit hit;
-
-            bool hasCollided = Physics.Raycast(
-                Camera.main.transform.position,
-                Camera.main.transform.forward,
-                out hit,
-                Mathf.Infinity
-            );
-
-            if (hasCollided)
-            {
-                Debug.Log(hit.collider.name);
-            }
-
-            inputs.ShootInput(false);
+            // Check if the the object can be damaged
+            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            enemyHealth?.TakeDamage(damageAmount);
         }
 
+        inputs.ShootInput(false);
     }
 }
