@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private int damageAmount = 1;
     [SerializeField] private ParticleSystem muzzleFlash;
+
+    const string SHOOT_ANIM = "Shoot";
 
     StarterAssets.StarterAssetsInputs inputs;
 
@@ -23,6 +26,7 @@ public class Weapon : MonoBehaviour
         if (!inputs.shoot) return;
 
         muzzleFlash.Play();
+        animator.Play(SHOOT_ANIM, 0, 0f);
         RaycastHit hit;
 
         bool hasCollided = Physics.Raycast(
