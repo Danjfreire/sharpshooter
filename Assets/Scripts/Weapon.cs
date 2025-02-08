@@ -4,6 +4,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 1;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     StarterAssets.StarterAssetsInputs inputs;
 
@@ -21,6 +22,7 @@ public class Weapon : MonoBehaviour
     {
         if (!inputs.shoot) return;
 
+        muzzleFlash.Play();
         RaycastHit hit;
 
         bool hasCollided = Physics.Raycast(
