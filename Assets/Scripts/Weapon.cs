@@ -1,10 +1,12 @@
 using StarterAssets;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private int damageAmount = 1;
+    [SerializeField] private ParticleSystem weaponHitFx;
     [SerializeField] private ParticleSystem muzzleFlash;
 
     const string SHOOT_ANIM = "Shoot";
@@ -41,6 +43,9 @@ public class Weapon : MonoBehaviour
             // Check if the the object can be damaged
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
             enemyHealth?.TakeDamage(damageAmount);
+
+            // Show the weapon hit effect
+            Instantiate(weaponHitFx, hit.point, quaternion.identity);
         }
 
         inputs.ShootInput(false);

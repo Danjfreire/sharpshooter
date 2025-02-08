@@ -966,6 +966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1975065601}
   damageAmount: 1
+  weaponHitFx: {fileID: 3521042371194368964, guid: e07455a04bb6f4e489f97a248e908ee9, type: 3}
   muzzleFlash: {fileID: 7188867230953224708}
 --- !u!1001 &1105869729
 PrefabInstance:
@@ -1772,6 +1773,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406110051445674986, guid: 50f7aefe40810384fbc1b7acc28a6ab6, type: 3}
       propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406110051445674986, guid: 50f7aefe40810384fbc1b7acc28a6ab6, type: 3}
+      propertyPath: startDelay.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7406110051445674986, guid: 50f7aefe40810384fbc1b7acc28a6ab6, type: 3}
