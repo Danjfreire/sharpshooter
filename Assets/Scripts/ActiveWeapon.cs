@@ -29,6 +29,11 @@ public class ActiveWeapon : MonoBehaviour
         }
     }
 
+    public void SwitchWeapon(WeaponSO weaponSO)
+    {
+        Debug.Log("Picked up:" + weaponSO.name);
+    }
+
     private void ShootWeapon()
     {
         if (!inputs.shoot) return;
