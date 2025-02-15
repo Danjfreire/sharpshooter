@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private WeaponSO weaponSO;
     [SerializeField] private Animator animator;
-    [SerializeField] private int damageAmount = 1;
     [SerializeField] private ParticleSystem weaponHitFx;
     [SerializeField] private ParticleSystem muzzleFlash;
 
@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
         {
             // Check if the the object can be damaged
             EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-            enemyHealth?.TakeDamage(damageAmount);
+            enemyHealth?.TakeDamage(weaponSO.Damage);
 
             // Show the weapon hit effect
             Instantiate(weaponHitFx, hit.point, quaternion.identity);
