@@ -31,11 +31,16 @@ public class ActiveWeapon : MonoBehaviour
 
     private void ShootWeapon()
     {
-        if (!inputs.shoot || currentWeaponCd > 0) return;
+        if (!inputs.shoot) return;
+        if (currentWeaponCd > 0) return;
 
         animator.Play(SHOOT_ANIM, 0, 0f);
         currentWeapon.Shoot(weaponSO);
         currentWeaponCd = weaponSO.FireRate;
-        inputs.ShootInput(false);
+
+        if (!weaponSO.IsAutomatic)
+        {
+            inputs.ShootInput(false);
+        }
     }
 }
