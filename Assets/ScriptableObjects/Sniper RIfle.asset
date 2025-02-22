@@ -18,3 +18,5 @@ MonoBehaviour:
   HitVfx: {fileID: 3521042371194368964, guid: e07455a04bb6f4e489f97a248e908ee9, type: 3}
   IsAutomatic: 0
   CanZoom: 1
+  ZoomFov: 10
+  MagazineSize: 6
