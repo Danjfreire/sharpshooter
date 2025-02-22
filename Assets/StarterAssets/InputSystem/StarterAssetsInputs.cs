@@ -53,7 +53,6 @@ namespace StarterAssets
 
 		public void OnZoom(InputValue value)
 		{
-			Debug.Log("Zoom input value: " + value.isPressed);
 			ZoomInput(value.isPressed);
 		}
 #endif
@@ -88,7 +87,6 @@ namespace StarterAssets
 		{
 			// Toggle zoom
 			zoom = !zoom;
-			Debug.Log("Zoom input: " + zoom);
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

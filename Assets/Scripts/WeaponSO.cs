@@ -9,4 +9,5 @@ public class WeaponSO : ScriptableObject
     public ParticleSystem HitVfx;
     public bool IsAutomatic = false;
     public bool CanZoom = false;
+    public float ZoomFov = 10f;
 }
