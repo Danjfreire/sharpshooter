@@ -22,11 +22,7 @@ public class ActiveWeapon : MonoBehaviour
     private void Update()
     {
         ShootWeapon();
-
-        if (currentWeaponCd > 0)
-        {
-            currentWeaponCd -= Time.deltaTime;
-        }
+        ZoomWeapon();
     }
 
     public void SwitchWeapon(WeaponSO weaponSO)
@@ -43,6 +39,12 @@ public class ActiveWeapon : MonoBehaviour
 
     private void ShootWeapon()
     {
+        // Update weapon cd
+        if (currentWeaponCd > 0)
+        {
+            currentWeaponCd -= Time.deltaTime;
+        }
+
         if (currentWeapon == null) return;
         if (!inputs.shoot) return;
         if (currentWeaponCd > 0) return;
@@ -55,5 +57,20 @@ public class ActiveWeapon : MonoBehaviour
         {
             inputs.ShootInput(false);
         }
+    }
+
+    private void ZoomWeapon()
+    {
+        if (!weaponSO.CanZoom) return;
+
+        if (inputs.zoom)
+        {
+            Debug.Log("Is zooming");
+        }
+        else
+        {
+            Debug.Log("Is not zooming");
+        }
+
     }
 }
