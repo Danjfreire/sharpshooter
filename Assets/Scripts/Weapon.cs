@@ -3,6 +3,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private LayerMask layerMask;
 
 
     public void Shoot(WeaponSO weaponSO)
@@ -10,11 +11,14 @@ public class Weapon : MonoBehaviour
         muzzleFlash.Play();
         RaycastHit hit;
 
+        // Check if the raycast has collided with an object, but ignore triggers
         bool hasCollided = Physics.Raycast(
             Camera.main.transform.position,
             Camera.main.transform.forward,
             out hit,
-            Mathf.Infinity
+            Mathf.Infinity,
+            layerMask,
+            QueryTriggerInteraction.Ignore
         );
 
         if (hasCollided)
