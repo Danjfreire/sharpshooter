@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem deathVfx;
     [SerializeField] private int maxHealth = 3;
 
     private int currentHealth;
@@ -18,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Instantiate(deathVfx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
