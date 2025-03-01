@@ -1,11 +1,14 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 5;
+    [Range(1, 10)]
+    [SerializeField] private int maxHealth = 10;
     [SerializeField] private CinemachineVirtualCamera gameOverCam;
     [SerializeField] Transform weaponCamera;
+    [SerializeField] Image[] shieldBars;
 
     private int currentHealth;
     private int gameOverCameraPriority = 20;
@@ -13,12 +16,14 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        AdjustShieldBars();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Took " + damage + " damage!");
+        Debug.Log("Player took damage. Current health: " + currentHealth);
+        AdjustShieldBars();
 
         if (currentHealth <= 0)
         {
@@ -27,6 +32,21 @@ public class PlayerHealth : MonoBehaviour
             weaponCamera.parent = null;
             gameOverCam.Priority = gameOverCameraPriority;
             Destroy(gameObject);
+        }
+    }
+
+    private void AdjustShieldBars()
+    {
+        for (int i = 0; i < shieldBars.Length; i++)
+        {
+            if (i < currentHealth)
+            {
+                shieldBars[i].enabled = true;
+            }
+            else
+            {
+                shieldBars[i].enabled = false;
+            }
         }
     }
 }
