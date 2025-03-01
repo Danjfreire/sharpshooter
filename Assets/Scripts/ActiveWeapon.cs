@@ -10,6 +10,7 @@ public class ActiveWeapon : MonoBehaviour
 
     [SerializeField] private WeaponSO defaultWeaponSO;
     [SerializeField] private CinemachineVirtualCamera playerFollowCamera;
+    [SerializeField] private Camera weaponCamera;
     [SerializeField] private GameObject zoomVignette;
     [SerializeField] private TMP_Text ammoCounterText;
 
@@ -95,12 +96,14 @@ public class ActiveWeapon : MonoBehaviour
         if (inputs.zoom)
         {
             playerFollowCamera.m_Lens.FieldOfView = currentWeaponSO.ZoomFov;
+            weaponCamera.fieldOfView = currentWeaponSO.ZoomFov;
             zoomVignette.SetActive(true);
             firstPersonController.SetRotationSpeed(currentWeaponSO.ZoomFov / defaultFov);
         }
         else
         {
             playerFollowCamera.m_Lens.FieldOfView = defaultFov;
+            weaponCamera.fieldOfView = defaultFov;
             zoomVignette.SetActive(false);
             firstPersonController.SetRotationSpeed(defaultRotationSpeed);
         }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -5,11 +6,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private LayerMask layerMask;
 
+    CinemachineImpulseSource impulseSource;
+
+    void Awake()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
 
     public void Shoot(WeaponSO weaponSO)
     {
         muzzleFlash.Play();
         RaycastHit hit;
+        impulseSource.GenerateImpulse();
 
         // Check if the raycast has collided with an object, but ignore triggers
         bool hasCollided = Physics.Raycast(
